@@ -66,8 +66,7 @@ def checkWinner():
         print(dealer, " = ", dealerCount, " = Dealer")
         print(user, " = ", userCount, " = Player")
         print("---------------")
-        tempCount = count(dealer)
-        if tempCount > 21:
+        if count(dealer) > 21:
             print("User wins!")
             return
     
@@ -85,6 +84,31 @@ def start():
     deal()
     while count(user) <= 21:
         print("----------------------------------------------------------------------")
+        bjDealer = count(dealer) == 21
+        bjUser = count(user) == 21
+
+        if bjUser and not bjDealer:
+            dealerCount = count(dealer)
+            userCount = count(user)
+            print(dealer, " = ", dealerCount, " = Dealer")
+            print(user, " = ", userCount, " = Player")
+            print("---------------")
+            print("User wins! - BlackJack")
+            reset()
+            deal()
+            continue
+
+        if bjUser and bjDealer:
+            dealerCount = count(dealer)
+            userCount = count(user)
+            print(dealer, " = ", dealerCount, " = Dealer")
+            print(user, " = ", userCount, " = Player")
+            print("---------------")
+            print("Push! - BlackJack")
+            reset()
+            deal()
+            continue
+
         temp = [dealer[0]]
         print(temp)
         tempArr = []
@@ -100,5 +124,6 @@ def start():
             checkWinner()
             reset()
             deal()
+            continue
     
 start()
