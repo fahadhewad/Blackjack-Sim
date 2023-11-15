@@ -82,10 +82,12 @@ def checkWinner():
 
 def start():
     deal()
-    while count(user) <= 21:
+    while True:
         print("----------------------------------------------------------------------")
-        bjDealer = count(dealer) == 21
-        bjUser = count(user) == 21
+        tempArray = [dealer[0], dealer[1]]
+        bjDealer = count(tempArray) == 21
+        tempArray = [user[0], user[1]]
+        bjUser = count(tempArray) == 21
 
         if bjUser and not bjDealer:
             dealerCount = count(dealer)
@@ -116,6 +118,17 @@ def start():
         print("Dealer = " + str(count(tempArr)))
         print(user)
         print("Player = " + str(count(user)))
+        if count(user) > 21:
+            print("----------------------------------------------------------------------")
+            print(dealer)
+            print("Dealer = " + str(count(dealer)))
+            print(user)
+            print("Player = " + str(count(user)))
+            print("Dealer wins! - Bust")
+            reset()
+            deal()
+            continue
+
         userInput = int(input("1 = Hit, 0 = Stand\n"))
         if userInput == 1:
             hitPerson(user)
