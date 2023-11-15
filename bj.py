@@ -10,21 +10,38 @@ def deckMake():
             x = card + "-" + suit
             deck.append(x)
 
-for i in range(3): # 3 decks made
-    deckMake()
+def dealDeck(n):
+    for i in range(n): # 3 decks made
+        deckMake()
 
+dealDeck(3)
 
 random.shuffle(deck)
 
 dealer = []
 user = []
 
-def deal():
-    user.append(deck.pop())
-    dealer.append(deck.pop())
-    user.append(deck.pop())
-    dealer.append(deck.pop())
+def reshuffle():
+    print("--------------------------")
+    print("Deck out of cards!")
+    userInput = int(input("Type the number of decks you want shuffled in. 0 to Exit.\n"))
+    if userInput == 0:
+        exit
+    elif dealDeck(userInput):
+        deck.clear()
+        dealDeck(userInput)
+        print("Shuffled " + userInput + " decks.")
 
+def deal():
+    if len(deck) < 4:
+        deck.clear()
+        reshuffle()
+        
+    user.append(deck.pop())
+    dealer.append(deck.pop())
+    user.append(deck.pop())
+    dealer.append(deck.pop())     
+        
 def count(player):
     count = 0
     number = 0
@@ -43,10 +60,12 @@ def count(player):
 
     return count
 
-
-
 def hitPerson(player):
-    player.append(deck.pop())
+    try:
+        player.append(deck.pop())
+    except:
+        reshuffle()
+        player.append(deck.pop())
 
 def reset():
     dealer.clear()
@@ -111,11 +130,11 @@ def start():
             deal()
             continue
 
-        temp = [dealer[0]]
-        print(temp)
-        tempArr = []
-        tempArr.append(dealer[0])
-        print("Dealer = " + str(count(tempArr)))
+        firstCard = [dealer[0]]
+        print(firstCard)
+        firstCardCount = []
+        firstCardCount.append(dealer[0])
+        print("Dealer = " + str(count(firstCardCount)))
         print(user)
         print("Player = " + str(count(user)))
         if count(user) > 21:
