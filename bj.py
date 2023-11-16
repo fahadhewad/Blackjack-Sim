@@ -84,8 +84,7 @@ def checkWinner():
     print(dealer, " = ", dealerCount, " = Dealer")
     print(user, " = ", userCount, " = Player")
     print("---------------")
-    tempCount = count(dealer)
-    while tempCount < 17:
+    while count(dealer) < 18:
         hitPerson(dealer)
         dealerCount = count(dealer)
         userCount = count(user)
@@ -122,6 +121,7 @@ def start():
 
         if bjUser and not bjDealer:
             userBJCount += 1
+            userWinCount += 1
             dealerCount = count(dealer)
             userCount = count(user)
             print(dealer, " = ", dealerCount, " = Dealer")
@@ -130,11 +130,12 @@ def start():
             print("User wins! - BlackJack")
             reset()
             deal()
-            print("Player wins = " + userWinCount + " | Dealer wins = " + dealerWinCount)
-            print("Player blackjacks = " + userBJCount + " | Dealer blackjacks = " + dealerBJCount)
+            print("Player wins = " + str(userWinCount) + " | Dealer wins = " + str(dealerWinCount))
+            print("Player blackjacks = " + str(userBJCount) + " | Dealer blackjacks = " + str(dealerBJCount))
             continue
 
         if bjUser and bjDealer:
+            dealerBJCount += 1
             dealerBJCount += 1
             dealerCount = count(dealer)
             userCount = count(user)
@@ -144,8 +145,8 @@ def start():
             print("Push! - BlackJack")
             reset()
             deal()
-            print("Player wins = " + userWinCount + " | Dealer wins = " + dealerWinCount)
-            print("Player blackjacks = " + userBJCount + " | Dealer blackjacks = " + dealerBJCount)
+            print("Player wins = " + str(userWinCount) + " | Dealer wins = " + str(dealerWinCount))
+            print("Player blackjacks = " + str(userBJCount) + " | Dealer blackjacks = " + str(dealerBJCount))
             continue
 
         firstCard = [dealer[0]]
