@@ -52,7 +52,7 @@ def deal():
 def count(player):
     count = 0
     number = 0
-    ace = False
+
 
     for card in player:
         arr = card.split('-')

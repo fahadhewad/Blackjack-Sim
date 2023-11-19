@@ -1,0 +1,3 @@
+This code to imitate a blackjack game is functional. However it is impossible to add different features and improve upon the codebase because it hasn't followed single responsibility rules when making function, its not in a class so I cannot let the user play more than one hand etc..
+
+My plan is to rewrite this code in a more sensible OOP way to potentially make a frontend for this app that lets you play blackjack. It would communicate with a server that handles the blackjack play class and different hands can be user objects.
